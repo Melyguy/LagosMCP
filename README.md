@@ -135,7 +135,7 @@ To deploy the Lagos emulation layer, you will need:
 Clone the repository:
 
 ```bash
-git clone <YOUR-REPOSITORY-URL>
+git clone https://github.com/Melyguy/LagosMCP
 cd LagosMCP
 ```
 
@@ -260,6 +260,7 @@ platform with agentic context retrieval and MCP interoperability.
 - [x] Lagos exposed through MCP
 - [x] Buzzword generation
 - [x] LARP infrastructure
+- [x] The Lagos-Special in norwegian
 - [x] VS Code interoperability
 - [x] Enterprise nonsense
 
