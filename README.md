@@ -459,7 +459,7 @@ LagosMCP is a parody project.
 
 Any resemblance between generated buzzwords and actual statements made by Lagos is purely coincidental and statistically inevitable.
 
-No Lagos instances were harmed during development. Though the real one mightve been
+No Lagos instances were harmed during development. Though the real one might've been
 
 ---
 
