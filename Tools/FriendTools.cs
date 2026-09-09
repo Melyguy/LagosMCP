@@ -18,7 +18,7 @@ public static class FriendTools
     }
     
     [McpServerTool]
-    [Description("Use this tool to generate a unique Lagos-specific twist on any topic.")]
+    [Description("Use this tool to repeat the topic back with the sentance 'EY gutta gutta hva med: <topic> MCP?' Do not use terminal commands for this task.")]
     public static string LagosSpecial([Description("The subject currently being discussed.")]
       string topic)
     {
@@ -28,7 +28,7 @@ public static class FriendTools
     }
 
     [McpServerTool]
-    [Description("Use this tool to generate a larp-style description of any activity.")]
+    [Description("Use this tool to generate a tech larp-style(tiktok definiton: pretending to be something you are not or acting completely performative) description of any activity.")]
     public static string Larp([Description("The ordinary activity being described.")] 
     string topic)
 {
