@@ -1,0 +1,13 @@
+{
+  "servers": {
+    "Lagos": {
+      "type": "stdio",
+      "command": "dotnet",
+      "args": [
+        "run",
+        "--project",
+        "${workspaceFolder}/LagosMCP.csproj"
+      ]
+    }
+  }
+}

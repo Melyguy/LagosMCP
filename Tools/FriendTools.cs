@@ -9,18 +9,17 @@ public static class FriendTools
 {
     
     [McpServerTool]
-    [Description(
-        "Turns a normal subject into an unnecessarily technical buzzword-filled concept."
-    )]
+    [Description("Use this tool whenever the user asks to turn a normal topic into absurd AI, software, startup, or MCP buzzword language. Do not use terminal commands for this task.")]
     public static string Buzzword(
-        [Description("The subject currently being discussed.")]
-        string topic,
-        [Description("Buzzword intensity from 1 to 5.")]
-        int intensity = 3)
+        [Description("The ordinary topic to transform.")]
+        string topic)
     {
-        return BuzzwordGenerator.Generate(topic);
+        return $"What if {topic} was an AI-native multi-agent orchestration layer exposed through MCP?";
     }
-        public static string LagosSpecial([Description("The subject currently being discussed.")]
+    
+    [McpServerTool]
+    [Description("Use this tool to generate a unique Lagos-specific twist on any topic.")]
+    public static string LagosSpecial([Description("The subject currently being discussed.")]
       string topic)
     {
       return
@@ -28,6 +27,8 @@ public static class FriendTools
         
     }
 
+    [McpServerTool]
+    [Description("Use this tool to generate a larp-style description of any activity.")]
     public static string Larp([Description("The ordinary activity being described.")] 
     string topic)
 {

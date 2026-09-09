@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LagosMCP")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+30c11e0ffae418ed221662f65591c42ab0123ed0")]
 [assembly: System.Reflection.AssemblyProductAttribute("LagosMCP")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LagosMCP")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -48,3 +48,4 @@ E:\Repos\LagosMCP\obj\Release\net10.0\refint\LagosMCP.dll
 E:\Repos\LagosMCP\obj\Release\net10.0\LagosMCP.pdb
 E:\Repos\LagosMCP\obj\Release\net10.0\LagosMCP.genruntimeconfig.cache
 E:\Repos\LagosMCP\obj\Release\net10.0\ref\LagosMCP.dll
+E:\Repos\LagosMCP\obj\Release\net10.0\LagosMCP.sourcelink.json
