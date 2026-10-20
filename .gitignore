@@ -1,0 +1,25 @@
+# Build output
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+artifacts/
+
+# Test output
+TestResults/
+*.trx
+*.coverage
+
+# Tooling
+.vs/
+.idea/
+*.user
+*.suo
+
+# OS noise
+.DS_Store
+Thumbs.db
+
+# Local environment
+.env
+*.local.json

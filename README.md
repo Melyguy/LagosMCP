@@ -78,6 +78,23 @@ Problem solved.
 
 ## Tools
 
+Nine tools. All of them deterministic when given a `seed`, which is the only
+production-grade thing about this repository.
+
+| Tool | Input | Does what |
+|---|---|---|
+| `Buzzword` | `topic`, `intensity` 1–5, `seed?` | Turns anything into an enterprise paradigm. Intensity 1 is a mild suggestion; 5 is a Series A pitch. |
+| `LagosSpecial` | `topic` | `EY gutta gutta hva med: <topic> MCP?` |
+| `Larp` | `topic`, `role?`, `linkedin?`, `seed?` | Tech-larp. `linkedin: true` produces the seed-round announcement. |
+| `Mcpify` | `anything`, `seed?` | Emits a full MCP manifest with capabilities, schema, and a justification. |
+| `Evaluate` | `conversation`, `seed?` | MCP probability, a breakdown, and a time estimate. |
+| `Predict` | `conversation`, `seed?` | What Lagos says next, with confidence and turns-to-MCP. |
+| `Standup` | `whatYouDid`, `seed?` | Rewrites your day into platform work. |
+| `Excuse` | `incident`, `seed?` | Postmortem with a root cause at some boundary. |
+| `ShouldWeMakeThisAnMcp` | `thing`, `seed?` | Always yes. The reasoning varies. |
+
+---
+
 ### `Lagos.Buzzword`
 
 Transforms an ordinary subject into a scalable, AI-native, production-grade technological paradigm.
@@ -91,9 +108,12 @@ going to the gym
 #### Output
 
 ```text
-What if going to the gym was actually an AI-native,
-distributed multi-agent fitness orchestration layer
-with MCP interoperability?
+Intensity 3:
+What if going to the gym was a production-grade interoperability layer?
+
+Intensity 5:
+What if going to the gym was actually a production-grade, composable
+abstraction layer exposed through MCP, with semantic context propagation?
 ```
 
 ---
@@ -113,10 +133,115 @@ making scrambled eggs
 #### Output
 
 ```text
-I'm currently architecting a production-grade egg preparation
-ecosystem utilizing modular infrastructure, real-time orchestration
-and agentic workflows.
+As a staff infrastructure architect, I'm currently architecting a
+production-grade making scrambled eggs ecosystem using modular
+infrastructure, agentic workflows, horizontal scalability and real-time
+orchestration. The tech is easy. The alignment is the moat.
 ```
+
+---
+
+### `Lagos.Mcpify`
+
+Converts literally anything into a deployable-looking MCP server manifest.
+
+#### Input
+
+```text
+ordering pizza
+```
+
+#### Output
+
+```text
+# ordering pizza as a Service (aaS)
+
+server: ordering-pizza-mcp
+transport: stdio
+version: 0.1.7-enterprise
+capabilities:
+  - evidence-based-guessing
+  - state-reconciliation
+tools:
+  - name: ordering_pizza
+    description: "Enterprise-grade ordering pizza orchestration with evidence-based-guessing."
+    inputSchema:
+      type: object
+      required: [context]
+...
+
+justification: |
+  ordering pizza has, until now, been accessed directly by humans.
+  This is not horizontally scalable. By exposing it through MCP,
+  we unlock evidence-based-guessing and prepare for state-reconciliation.
+  Estimated valuation increase: $64,000,000.
+
+verdict: ship it.
+```
+
+---
+
+### `Lagos.Evaluate`
+
+#### Input
+
+```text
+we should maybe make a website with an agentic backend
+```
+
+#### Output
+
+```text
+MCP probability: 31%
+
+breakdown:
+  mcp mentions:        0
+  agentic:             yes
+  buzzword density:    1.85 per 100 chars
+  human intent:        69%
+
+time until MCP: ~6 minutes
+verdict: Start writing the manifest.
+```
+
+---
+
+### Everything else, briefly
+
+```text
+Predict("we're thinking about building a tool for the team")
+  prediction:  "yo, imagine we're thinking about building a tool for the team with MCP interoperability?"
+  confidence:  71%
+  next mention of MCP in: 2 turn(s)
+  recommended response: "yes"
+
+Standup("spent all day on css")
+  Yesterday: unblocked the platform team on the context layer
+  Today:     cutting scope so we can scale it later
+  Blockers:  the vendor's MCP story
+
+Excuse("checkout was down for 20 minutes")
+  Root cause:  a race condition in the agent handoff
+  Action item: declare it a feature
+  Recurrence:  guaranteed
+
+ShouldWeMakeThisAnMcp("making a sandwich")
+  Answer: YES
+  Reason: there is no manifest describing it.
+```
+
+---
+
+## Development
+
+```bash
+dotnet build                                   # the server
+dotnet test tests/LagosMCP.Tests.csproj        # 47 tests, seeded and fast
+```
+
+The generators live in `Services/` and are pure functions: every one takes an
+optional `int? seed` and returns a string. That is what makes them testable,
+and it is also the only defensible architecture decision in the project.
 
 ---
 
@@ -264,27 +389,30 @@ platform with agentic context retrieval and MCP interoperability.
 - [x] VS Code interoperability
 - [x] Enterprise nonsense
 
-### v2
+### v2 — shipped
 
-- [ ] `Lagos.Mcpify()`
-  - Convert literally anything into an MCP
-
-- [ ] `Lagos.Predict()`
-  - Predict what Lagos is about to say
-
-- [ ] `Lagos.Evaluate()`
-  - Calculate the probability that a conversation will eventually lead to MCP
-
-- [ ] Buzzword intensity parameter
+- [x] `Lagos.Mcpify()` — convert literally anything into an MCP manifest
+- [x] `Lagos.Predict()` — predict what Lagos is about to say
+- [x] `Lagos.Evaluate()` — probability that a conversation will lead to MCP
+- [x] Buzzword intensity parameter
+- [x] `Lagos.Standup()` / `Lagos.Excuse()` / `Lagos.ShouldWeMakeThisAnMcp()`
+- [x] Deterministic seeding, so the nonsense is reproducible
+- [x] Tests, which is arguably the least funny part of this repository
 
 ```text
 Intensity 1:
 "Maybe we could automate this."
 
 Intensity 5:
-"We need an AI-native distributed agentic orchestration substrate
-with semantic context propagation and MCP interoperability."
+"What if this was actually an AI-native, distributed agentic orchestration
+substrate exposed through MCP, with semantic context propagation?"
 ```
+
+### v2.1
+
+- [ ] Streaming buzzwords (token-by-token latency theatre)
+- [ ] `/metrics` endpoint exposing `buzzwords_per_second`
+- [ ] Rate limiting, for the one person who calls this in a loop
 
 ### v3
 

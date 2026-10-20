@@ -2,6 +2,9 @@ namespace LagosMcp.Services;
 
 public static class BuzzwordGenerator
 {
+    public const int MinIntensity = 1;
+    public const int MaxIntensity = 5;
+
     private static readonly string[] Adjectives =
     [
         "AI-native",
@@ -13,7 +16,12 @@ public static class BuzzwordGenerator
         "enterprise-ready",
         "scalable",
         "modular",
-        "real-time"
+        "real-time",
+        "horizontally scalable",
+        "semantic",
+        "autonomous",
+        "composable",
+        "event-driven"
     ];
 
     private static readonly string[] Nouns =
@@ -27,18 +35,56 @@ public static class BuzzwordGenerator
         "architecture",
         "agent mesh",
         "workflow engine",
-        "abstraction layer"
+        "abstraction layer",
+        "substrate",
+        "control plane",
+        "interoperability layer",
+        "context fabric"
     ];
 
-    public static string Generate(string topic)
+    private static readonly string[] Qualities =
+    [
+        "with semantic context propagation",
+        "with real-time orchestration",
+        "with agentic workflows",
+        "with MCP interoperability",
+        "with horizontal scalability",
+        "with modular infrastructure",
+        "with zero-trust governance",
+        "with a unified data plane"
+    ];
+
+    public static int Clamp(int intensity) =>
+        Math.Clamp(intensity, MinIntensity, MaxIntensity);
+
+    /// <summary>
+    /// Turns an ordinary topic into enterprise-grade nonsense.
+    /// Intensity 1 is a mild suggestion; intensity 5 is a Series A pitch.
+    /// </summary>
+    public static string Generate(string topic, int intensity = MaxIntensity, int? seed = null)
     {
-        string adjective1 = Adjectives[Random.Shared.Next(Adjectives.Length)];
-        string adjective2 = Adjectives[Random.Shared.Next(Adjectives.Length)];
+        var subject = Text.Tidy(topic);
+        var level = Clamp(intensity);
+        var rng = Rng.Create(seed);
 
-        string noun = Nouns[Random.Shared.Next(Nouns.Length)];
+        if (level <= 3)
+        {
+            return level switch
+            {
+                1 => $"Maybe we could automate {subject}.",
+                2 => $"We could probably make {subject} {rng.Pick(Adjectives)}, eventually.",
+                _ => $"What if {subject} was a {rng.Pick(Adjectives)} {rng.Pick(Nouns)}?"
+            };
+        }
 
-        return
-            $"What if {topic} was actually a {adjective1}, " +
-            $"{adjective2} {noun} exposed through MCP?";
+        // Two different adjectives, so we never emit "agentic, agentic".
+        var first = rng.Pick(Adjectives);
+        var second = rng.PickDistinct(Adjectives, first);
+        var noun = rng.Pick(Nouns);
+        var quality = rng.Pick(Qualities);
+
+        return level == 4
+            ? $"What if {subject} was actually a {first}, {second} {noun} {quality}?"
+            : $"What if {subject} was actually a {first}, {second} {noun} exposed through MCP, {quality}?";
     }
 }
